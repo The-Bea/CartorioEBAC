@@ -133,8 +133,8 @@ int deletar()
    switch(confirmacao)
    {
    	  case 1:
-   	  	remove(cpf); //remove o CPF
-   	  	break;
+   	    remove(cpf); //remove o CPF
+   	    break;
    	  	
    	  case 2:
 		printf("\tCPF não deletado\n"); //cancela a ação de deletar
@@ -173,7 +173,8 @@ int main()
 	 printf("\tQual opção você deseja?\n\n");
 	 printf("1- Registrar aluno\n");	
 	 printf("2- Consultar registros\n");
-	 printf("3- Deletar registro\n\n"); 
+	 printf("3- Deletar registro\n"); 
+	 printf("4- Sair do sistema\n\n");
 	 printf("opção:"); //fim do menu
 	
 	 scanf("%d", &opcao); //armazenando a escolha do usuario
@@ -193,6 +194,11 @@ int main()
 	 	case 3:
 		 	deletar();
 		     break;
+		
+		case 4:
+			printf("Obrigado por usar o sistema!\n");
+			return 0;
+			break;
 		     
 		default:
 			printf("o número inserido não corresponte a uma opção!\n");

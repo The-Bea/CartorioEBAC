@@ -137,9 +137,15 @@ int deletar()
    printf("\n\n");
    system("pause");	
    
-   printf("Este CPF corresponde as seguintes informações: \n"); //mostrando as informações do CPF escolhido para validação
-   printf("%s", conteudo);
-   printf("\n\n");
+   FILE *file;
+   file = fopen(cpf, "r");
+   
+   while(fgets(conteudo, 200, file) != NULL)
+	{
+		printf("CPF encontrado. Aqui está o registro: \n"); //ao achar o arquivo, traz as informações contidas nele
+    	printf("%s", conteudo);
+	    printf("\n\n");
+	}
    
    printf("Deseja deletar mesmo assim?\n"); //confirmação de remoção de CPF
    printf("\t1- sim \n");
@@ -150,6 +156,8 @@ int deletar()
    {
    	  case 1:
    	    remove(cpf); //remove o CPF
+   	    printf("O registro foi deletado!\n\n");
+   	    system("pause");
    	    break;
    	  	
    	  case 2:
@@ -159,8 +167,6 @@ int deletar()
    }
    
    
-   FILE *file;
-   file = fopen(cpf,"r");
    
    if(file == NULL) //caso não encontre o CPF
    {
@@ -176,55 +182,76 @@ int main()
 	//variáveis usadas
 	int opcao=0;
 	int laco=1;
+	char senhadigitada[10]="a";
+	int comparacao;
 	
-	for(laco=1;laco=1;) //laço de repetição
+	setlocale(LC_ALL, "Portuguese"); //definindo a linguagem
+	
+	printf(" -- Bem vindo aos Registros EBAC --\n\n");
+	printf("Login de administrador!\n\n");
+	printf("Digite sua senha\n\n");
+	scanf("%s",senhadigitada);
+	
+	comparacao = strcmp(senhadigitada, "admin");
+	
+	if(comparacao==0)
 	{
 		
+		for(laco=1;laco=1;) //laço de repetição
+	{
+
 		system("cls");
 
 	 setlocale(LC_ALL, "Portuguese"); //definindo a linguagem
 	
-	 printf(" -- Bem vindo aos Registros EBAC --\n\n"); //inicio do menu
- 	 printf("\t    Menu Principal\n");
-	 printf("\tQual opção você deseja?\n\n");
-	 printf("1- Registrar aluno\n");	
-	 printf("2- Consultar registros\n");
-	 printf("3- Deletar registro\n"); 
-	 printf("4- Sair do sistema\n\n");
-	 printf("opção:"); //fim do menu
+		printf(" -- Bem vindo aos Registros EBAC --\n\n"); //inicio do menu
+ 	 	printf("\t    Menu Principal\n");
+	 	printf("\tQual opção você deseja?\n\n");
+	 	printf("1- Registrar aluno\n");	
+	 	printf("2- Consultar registros\n");
+	 	printf("3- Deletar registro\n"); 
+	 	printf("4- Sair do sistema\n\n");
+	 	printf("opção:"); //fim do menu
 	
-	 scanf("%d", &opcao); //armazenando a escolha do usuario
+		scanf("%d", &opcao); //armazenando a escolha do usuario
 	
-	 system("cls");
+	 	system("cls");
 	 
-	 switch(opcao) //seleção de acordo com a escolha do usuário
-	 {
-	 	case 1:
-	 		registrar();
-	 		break;
+	 	switch(opcao) //seleção de acordo com a escolha do usuário
+	 	{
+	 		case 1:
+	 			registrar();
+	 			break;
 	 		
-	 	case 2:
-	 		consultar();
-	 		break;
+	 		case 2:
+	 			consultar();
+	 			break;
 	 		
-	 	case 3:
-		 	deletar();
-		     break;
+	 		case 3:
+			 	deletar();
+		 	    break;
 		
-		case 4:
-			printf("Obrigado por usar o sistema!\n");
-			return 0;
-			break;
+			case 4:
+				printf("Obrigado por usar o sistema!\n");
+				return 0;
+				break;
 		     
-		default:
-			printf("o número inserido não corresponte a uma opção!\n");
-			printf("Por favor digite um número do menu");
-			system("pause");
-			break;
-	 }//switch case
+			default:
+				printf("o número inserido não corresponte a uma opção!\n");
+				printf("Por favor digite um número do menu");
+				system("pause");
+				break;
+		 }//switch case
 	
-    }//for
+  	  }//for	
+		
+	} //if
 	
+
+   else
+   	{
+   		printf("senha incorreta!");
+	   }
 	
 } //fim
 

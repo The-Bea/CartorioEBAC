@@ -22,7 +22,8 @@ int registrar() //cadastro de usuarios
   char cpf[40];
   char nome[40];
   char sobrenome[40];
-  char cargo[40]; 
+  char cargo[40];
+  int continuar=0; 
   
   printf("Digite o CPF para cadastro: "); //coletando informação
   scanf("%s", cpf); 
@@ -69,7 +70,22 @@ int registrar() //cadastro de usuarios
   
   printf("\n\n\tDados salvos.\n\n"); //mensagem de saída
   
-  system("pause");
+  printf("Deseja fazer outro registro?\n"); //caminho pós registro
+  printf("1- Sim \n");
+  printf("2- Não \n\n");
+  scanf("%d", &continuar); //armazenando a escolha do usuario
+  
+  switch(continuar)
+  {
+  	case 1:
+  		registrar();
+  		break;
+  		
+  	case 2:
+  		system("pause");
+  		system("cls");
+  		break;
+  }
   
 }
 //---------------
